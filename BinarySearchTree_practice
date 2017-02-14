@@ -172,15 +172,3 @@ echo $tree->traverse("preOrder");
 echo "<br><br>BST PostOrder Traversal<br>";
 echo $tree->traverse("postOrder");
 ?>
-
-
-
-
-
-
-
-
-
-
-
-

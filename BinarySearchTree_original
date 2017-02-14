@@ -161,25 +161,3 @@ echo $tree->traverse('preOrder');
 echo "<br>PostOrder<br>";
 echo $tree->traverse('postOrder');
 ?>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
