@@ -1,0 +1,185 @@
+<?php
+class Node {
+    public $value;
+    public $left;
+	public $right;
+	public $level;
+	
+	public function __construct($value) {
+		$this->value = $value;
+		$this->left = NULL;
+		$this->right = NULL;
+		$this->level = NULL;
+	}
+	
+	public function __toString() {
+		return "$this->value";
+	}
+}
+
+class SearchBinaryTree {
+	public $root;
+	
+	public function __construct() {
+		$this->root = NULL;
+	}
+	
+	public function create($value) {
+		if ($this->root == NULL) {
+			$this->root = new Node($value);
+		} else {
+			$current = $this->root;
+			while (true) {
+				if ($value < $current->value) {
+					if ($current->left != NULL) {
+						$current = $current->left;
+					} else {
+						$current->left = new Node($value);
+						break;
+					}
+				} elseif ($value > $current->value) {
+					if ($current->right != NULL) {
+						$current = $current->right;
+					} else {
+						$current->right = new Node($value);
+						break;
+					}
+				} else {
+					//Do nothing
+					break;
+				}
+			}
+		}
+	}
+	
+	public function traverse($method) {
+		switch($method) {
+			case 'inOrder':
+				$this->_inOrder($this->root);
+				break;
+			case 'postOrder':
+				$this->_postOrder($this->root);
+				break;
+			case 'preOrder':
+				$this->_preOrder($this->root);
+				break;
+			default:
+				break;
+		}
+	}
+	
+	private function _inOrder($node) {
+		// Left -> Root -> Right
+		
+		// Left
+		if ($node->left	) {
+			$this->_inOrder($node->left);
+		}
+		
+		// Root
+		echo $node." ";
+		
+		// Right
+		if ($node->right) {
+			$this->_inOrder($node->right);
+		}
+	}
+	
+	private function _preOrder($node) {
+		// Root -> Left -> Right
+		
+		//Root
+		echo $node." ";
+		
+		// Left
+		if ($node->left) {
+			$this->_preOrder($node->left);
+		}
+		
+		// Right
+		if ($node->right) {
+			$this->_preOrder($node->right);
+		}		
+	}
+	
+	private function _postOrder($node) {
+		//Left -> Right -> Root
+		
+		//Left
+		if ($node->left) {
+			$this->_postOrder($node->left);
+		}
+		
+		//Right
+		if ($node->right) {
+			$this->_postOrder($node->right);
+		}
+		
+		//Root
+		echo $node. " ";
+	}
+	
+	public function BFT() {
+		
+		$node = $this->root;
+		$node->level = 1;
+		$queue = array($node);
+		$out = array("<br/>");
+		$current_level = $node->level;
+		
+		while (count($queue) > 0) {
+			$current_node = array_shift($queue);
+			if ($current_node->level > $current_level) {
+				$current_level++;
+				array_push($out, "<br/>");
+			}
+			array_push($out, $current_node->value. " ");
+			if ($current_node->left != NUll) {
+				$current_node->left->level = $current_level + 1;
+				array_push($queue, $current_node->left);
+			}
+			if ($current_node->right != NULL) {
+				$current_node->right->level = $current_level + 1;
+				array_push($queue, $current_node->right);
+			}
+		}
+		return join($out, "");
+	}
+}
+
+$arr = array(8,3,1,6,4,7,10,14,13,9,15);
+$tree = new SearchBinaryTree();
+for ($i = 0; $i < count($arr); $i++) {
+	$tree->create($arr[$i]);
+}
+echo "<br>Breadth First Traversal Tree<br>";
+echo $tree->BFT();
+echo "<br>InOrder<br>";
+echo $tree->traverse('inOrder');
+echo "<br>PreOrder<br>";
+echo $tree->traverse('preOrder');
+echo "<br>PostOrder<br>";
+echo $tree->traverse('postOrder');
+?>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

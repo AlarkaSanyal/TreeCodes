@@ -1,0 +1,59 @@
+array(1) {
+ [0]=> object(Node)#2 (4) {
+	["value"]=> int(8) 
+		["left"]=> object(Node)#3 (4) {
+			["value"]=> int(3) 
+				["left"]=> object(Node)#4 (4) {
+					["value"]=> int(1) 
+						["left"]=> NULL 
+						["right"]=> NULL 
+						["level"]=> NULL 
+				} 
+				["right"]=> object(Node)#5 (4) {
+					["value"]=> int(6) 
+						["left"]=> object(Node)#6 (4) {
+							["value"]=> int(4) 
+								["left"]=> NULL 
+								["right"]=> NULL 
+								["level"]=> NULL 
+						} 
+						["right"]=> object(Node)#7 (4) {
+							["value"]=> int(7) 
+								["left"]=> NULL 
+								["right"]=> NULL 
+								["level"]=> NULL 
+						} 
+						["level"]=> NULL 
+				}
+				["level"]=> NULL 
+		}
+		["right"]=> object(Node)#8 (4) {
+			["value"]=> int(10) 
+				["left"]=> object(Node)#11 (4) {
+					["value"]=> int(9) 
+						["left"]=> NULL 
+						["right"]=> NULL 
+						["level"]=> NULL 
+				} 
+				["right"]=> object(Node)#9 (4) {
+					["value"]=> int(14) 
+						["left"]=> object(Node)#10 (4) { 
+							["value"]=> int(13) 
+								["left"]=> NULL 
+								["right"]=> NULL 
+								["level"]=> NULL 
+						} 
+						["right"]=> object(Node)#12 (4) {
+							["value"]=> int(15) 
+							["left"]=> NULL 
+							["right"]=> NULL 
+							["level"]=> NULL 
+						} 
+						["level"]=> NULL 
+				} 
+				["level"]=> NULL 
+		} 
+		["level"]=> int(1) 
+  } 
+ 
+} 
