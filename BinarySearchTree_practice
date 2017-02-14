@@ -111,7 +111,7 @@ class BinarySearchTree {
 	}
 	
 	private function inOrderReverse($node) {
-		// Left -> Root -> Right
+		// Right -> Root -> Left
 		if ($node->right != NULL) {
 			$this->inOrderReverse($node->right);
 		}
