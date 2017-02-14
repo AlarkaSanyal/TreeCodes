@@ -1,0 +1,93 @@
+<?php
+class Node {
+	public $value;
+	public $left = NULL;
+	public $right = NULL;
+	public $level = NULL;
+	
+	public function __construct($value) {
+		$this->value = $value;
+	}
+}
+
+class BinarySearchTree {
+	private $root = NULL;
+	
+	// Creates the tree from an array
+	// The root node element should be inserted at position 0 of the array
+	public function createTree($value) {
+		if ($this->root == NULL) {
+			$this->root = new Node($value);
+		} else {
+			$current = $this->root;
+			while (true) {
+				if ($value < $current->value) {
+					if ($current->left == NULL) {
+						$current->left = new Node($value);
+						break;
+					} else {
+						$current = $current->left;
+					}
+				} elseif ($value > $current->value) {
+					if ($current->right == NULL) {
+						$current->right = new Node($value);
+						break;
+					} else {
+						$current = $current->right;
+					}
+				} else {
+					// Do nothing
+					break;
+				}
+			}
+		}
+	}
+	
+	public function BST($reverse = false) {
+		$node = $this->root;
+		$node->level = 1;
+		$queue = array($node);
+		$out = array("<br>");
+		$current_level = $node->level;
+		
+		while (count($queue) > 0) {
+			$current_node = array_shift($queue);
+			if ($current_node->level > $current_level) {
+				$current_level++;
+				array_push($out, "<br>");
+			}
+			array_push($out, $current_node->value." ");
+			if ($reverse) {
+				if ($current_node->right != NULL) {
+					$current_node->right->level = $current_level + 1;
+					array_push($queue, $current_node->right);
+				}
+				if ($current_node->left != NULL) {
+					$current_node->left->level = $current_level + 1;
+					array_push($queue, $current_node->left);
+				}
+			} else {
+				if ($current_node->left != NULL) {
+					$current_node->left->level = $current_level + 1;
+					array_push($queue, $current_node->left);
+				}
+				if ($current_node->right != NULL) {
+					$current_node->right->level = $current_level + 1;
+					array_push($queue, $current_node->right);
+				}
+			}
+		}
+		return join($out, "");
+	}
+}
+// The root node element is at position 0 of the array
+$arr = array(8,3,1,6,4,7,10,14,13,9,15);
+$tree = new BinarySearchTree();
+foreach ($arr as $val) {
+	$tree->createTree($val);
+}
+echo "<br><br>Binary Search Tree";
+echo $tree->BST();
+echo "<br><br>Binary Search Tree Reversed at each node";
+echo $tree->BST(TRUE);
+?>
