@@ -94,6 +94,9 @@ class BinarySearchTree {
 			case "postOrder":
 				$this->postOrder($this->root);
 				break;
+			case "postOrder":
+				$this->getHighest($this->root);
+				break;
 			default:
 				break;
 		}
@@ -119,6 +122,14 @@ class BinarySearchTree {
 		if ($node->left != NULL) {
 			$this->inOrderReverse($node->left);
 		}		
+	}
+	
+	private function getHighest($node) {
+		if ($node->right != NULL) {
+			$this->getHighest($node->right);
+		}
+		echo $node->value;
+		break;
 	}
 	
 	private function preOrder($node) {

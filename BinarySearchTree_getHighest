@@ -1,0 +1,68 @@
+<?php
+class Node {
+	public $value;
+	public $left = NULL;
+	public $right = NULL;
+	public $level = NULL;
+	
+	public function __construct($value) {
+		$this->value = $value;
+	}
+}
+
+class BinarySearchTree {
+	private $root = NULL;
+	private $highestFound = false;
+	// Creates the tree from an array
+	// The root node element should be inserted at position 0 of the array
+	public function createTree($value) {
+		if ($this->root == NULL) {
+			$this->root = new Node($value);
+		} else {
+			$current = $this->root;
+			while (true) {
+				if ($value < $current->value) {
+					if ($current->left == NULL) {
+						$current->left = new Node($value);
+						break;
+					} else {
+						$current = $current->left;
+					}
+				} elseif ($value > $current->value) {
+					if ($current->right == NULL) {
+						$current->right = new Node($value);
+						break;
+					} else {
+						$current = $current->right;
+					}
+				} else {
+					// Do nothing
+					break;
+				}
+			}
+		}
+	}
+	
+	public function getHighestVal() {
+		$this->getHighest($this->root);
+	}
+	
+	private function getHighest($node) {
+		if ($node->right != NULL) {
+			$this->getHighest($node->right);
+		}
+		if (!$this->highestFound) {
+			$this->highestFound = true;
+			echo $node->value;
+		}
+	}
+}
+// The root node element is at position 0 of the array
+$arr = array(1,7,65,98,455,4444,47,22,11,5,2,1,0);
+$tree = new BinarySearchTree();
+foreach ($arr as $val) {
+	$tree->createTree($val);
+}
+echo "<br><br>Highest<br>";
+echo $tree->getHighestVal();
+?>
