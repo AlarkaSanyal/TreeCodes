@@ -1,0 +1,24 @@
+<?php
+class SelectionSort {
+	public function selectionSort($arr) {
+		$length = count($arr);
+		for ($i = 0; $i < $length; $i++) {
+			$smallestIndex = $i;
+			$smallestValue = $arr[$i];
+			for ($j = $i+1; $j < $length; $j++) {
+				if ($arr[$j] < $smallestValue) {
+					$smallestIndex = $j;
+					$smallestValue = $arr[$j];
+				}
+			}
+			$arr[$smallestIndex] = $arr[$i];
+			$arr[$i] = $smallestValue;
+		}
+		return $arr;
+	}
+}
+$arr = array(255,1,22,3,45,5);
+$sort = new SelectionSort();
+echo "Sorted array<br>";
+print_r($sort->selectionSort($arr));
+?>
