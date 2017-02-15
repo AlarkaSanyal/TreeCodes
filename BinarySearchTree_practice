@@ -12,7 +12,7 @@ class Node {
 
 class BinarySearchTree {
 	private $root = NULL;
-	
+	private $highestFound = false;
 	// Creates the tree from an array
 	// The root node element should be inserted at position 0 of the array
 	public function createTree($value) {
@@ -94,7 +94,7 @@ class BinarySearchTree {
 			case "postOrder":
 				$this->postOrder($this->root);
 				break;
-			case "postOrder":
+			case "getHighest":
 				$this->getHighest($this->root);
 				break;
 			default:
@@ -128,8 +128,10 @@ class BinarySearchTree {
 		if ($node->right != NULL) {
 			$this->getHighest($node->right);
 		}
-		echo $node->value;
-		break;
+		if (!$this->highestFound) {
+			$this->highestFound = true;
+			echo $node->value;
+		}
 	}
 	
 	private function preOrder($node) {
@@ -182,4 +184,6 @@ echo "<br><br>BST PreOrder Traversal<br>";
 echo $tree->traverse("preOrder");
 echo "<br><br>BST PostOrder Traversal<br>";
 echo $tree->traverse("postOrder");
+echo "<br><br>Highest<br>";
+echo $tree->traverse("getHighest");
 ?>

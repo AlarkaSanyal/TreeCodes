@@ -1,0 +1,66 @@
+<?php
+class QuickSort {
+	public function quickSort($arr, $left, $right) {
+		$i = $left;
+		$j = $right;
+		$pivot = $arr[floor(($left + $right) / 2)];
+		
+		print "<br>START<br>";
+		print "i = ";
+		print_r($i);
+		print "<br>";
+		print "j = ";
+		print_r($j);
+		print "<br>";
+		print "Pivot = ";
+		print_r($pivot);
+		print "<br>";
+		
+		while ($i <= $j) {
+			while ($arr[$i] < $pivot) {
+				$i++;
+			}
+			print "New i = ";
+			print_r($i);
+			print "<br>";
+			while ($arr[$j] > $pivot) {
+				$j--;
+			}
+			print "New j = ";
+			print_r($j);
+			print "<br>";
+			print "Old Arr = ";
+			print_r(join($arr, ", "));
+			print "<br>";
+			if ($i <= $j) {
+				$tmp = $arr[$i];
+				$arr[$i] = $arr[$j];
+				$arr[$j] = $tmp;
+				$i++;
+				$j--;
+			}
+			print "New Arr = ";
+			print_r(join($arr, ", "));
+			print "<br>";
+		}
+		print "Left = ";
+		print_r($left);
+		print "<br>";
+		if ($left < $j) {
+			$arr = $this->quickSort($arr, $left, $j);
+		}
+		print "Right = ";
+		print_r($right);
+		print "<br>";
+		if ($right > $i) {
+			$arr = $this->quickSort($arr, $i, $right);
+		}
+		
+		return $arr;
+	}
+}
+$arr = array(20,12,4,13,5,8,12,15,45,75);
+$sort = new QuickSort();
+echo "Sorted array<br>";
+print_r($sort->quickSort($arr, 0, count($arr) -1));
+?>
